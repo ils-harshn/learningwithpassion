@@ -22,6 +22,11 @@ class Snake {
   }
 
   move() {
+    // store head's previous position BEFORE movement
+    let prevX = this.x;
+    let prevY = this.y;
+
+    // move head
     switch (this.direction) {
       case DIRECTIONS.UP:
         this.y -= this.unitSize;
@@ -35,6 +40,18 @@ class Snake {
       case DIRECTIONS.RIGHT:
         this.x += this.unitSize;
         break;
+    }
+
+    // update tails to follow the previous segment
+    for (let i = 0; i < this.tails.length; i++) {
+      let tempX = this.tails[i].x;
+      let tempY = this.tails[i].y;
+
+      this.tails[i].x = prevX;
+      this.tails[i].y = prevY;
+
+      prevX = tempX;
+      prevY = tempY;
     }
   }
 

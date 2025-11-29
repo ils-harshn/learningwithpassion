@@ -7,9 +7,9 @@ let canvas,
   snake,
   food,
   lastTime = 0;
-const FPS = 10,
+const FPS = 20,
   FRAME_DURATION = 1000 / FPS,
-  UNIT_SIZE = 15;
+  UNIT_SIZE = 40;
 
 function renderGrid() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
