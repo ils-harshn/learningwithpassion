@@ -7,9 +7,9 @@ let canvas,
   snake,
   food,
   lastTime = 0;
-const FPS = 20,
+const FPS = 30,
   FRAME_DURATION = 1000 / FPS,
-  UNIT_SIZE = 40;
+  UNIT_SIZE = 20;
 
 function renderGrid() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -37,8 +37,8 @@ function render() {
     snake.addTail();
     food.putRandomly(canvas.width, canvas.height);
   }
-  snake.render(ctx);
   food.render(ctx);
+  snake.render(ctx, canvas);
 }
 
 function animate(timestamp) {
