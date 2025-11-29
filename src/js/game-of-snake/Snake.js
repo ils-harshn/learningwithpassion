@@ -6,11 +6,17 @@ class Snake {
     this.y = y;
     this.unitSize = unitSize;
     this.direction = DIRECTIONS.RIGHT;
+    this.tails = [];
   }
 
   render(ctx) {
     ctx.fillStyle = "green";
     ctx.fillRect(this.x, this.y, this.unitSize, this.unitSize);
+
+    // render tails
+    for (let tail of this.tails) {
+      ctx.fillRect(tail.x, tail.y, this.unitSize, this.unitSize);
+    }
 
     this.move();
   }
@@ -30,6 +36,10 @@ class Snake {
         this.x += this.unitSize;
         break;
     }
+  }
+
+  addTail() {
+    this.tails.push({ x: this.x, y: this.y });
   }
 
   setDirection(newDirection) {

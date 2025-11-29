@@ -1,13 +1,15 @@
 import { DIRECTIONS } from "./consts";
+import Food from "./Food";
 import Snake from "./Snake";
 
 let canvas,
   ctx,
   snake,
+  food,
   lastTime = 0;
 const FPS = 10,
   FRAME_DURATION = 1000 / FPS,
-  UNIT_SIZE = 10;
+  UNIT_SIZE = 15;
 
 function renderGrid() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -27,12 +29,16 @@ function renderGrid() {
     ctx.lineWidth = 1;
     ctx.stroke();
   }
-
-  snake.render(ctx);
 }
 
 function render() {
   renderGrid();
+  if (food.checkIfEaten(snake.x, snake.y)) {
+    snake.addTail();
+    food.putRandomly(canvas.width, canvas.height);
+  }
+  snake.render(ctx);
+  food.render(ctx);
 }
 
 function animate(timestamp) {
@@ -60,6 +66,12 @@ function main() {
     Math.floor(Math.random() * (canvas.height / UNIT_SIZE)) * UNIT_SIZE;
   snake = new Snake(snakeXRandom, snakeYRandom, UNIT_SIZE);
 
+  const foodXRandom =
+    Math.floor(Math.random() * (canvas.width / UNIT_SIZE)) * UNIT_SIZE;
+  const foodYRandom =
+    Math.floor(Math.random() * (canvas.height / UNIT_SIZE)) * UNIT_SIZE;
+  food = new Food(foodXRandom, foodYRandom, UNIT_SIZE);
+
   animate();
 
   window.addEventListener("resize", () => {
@@ -75,6 +87,7 @@ function main() {
     else if (key === "ArrowDown") snake.setDirection(DIRECTIONS.DOWN);
     else if (key === "ArrowLeft") snake.setDirection(DIRECTIONS.LEFT);
     else if (key === "ArrowRight") snake.setDirection(DIRECTIONS.RIGHT);
+    else if (key === "e") snake.addTail();
   });
 }
 
