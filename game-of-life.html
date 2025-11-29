@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game of Life</title>
+    <link rel="stylesheet" href="/src/css/game-of-life/index.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="canvas-wrapper">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        <div class="controls-container">
+            <button id="controls-toggler">x</button>
+        </div>
+        <div id="controls">
+            <h2>CONTROLS</h2>
+            <div class="control-group">
+                <button id="startBtn">START</button>
+                <button id="stopBtn">STOP</button>
+                <button id="clearBtn">CLEAR</button>
+                <button id="randomBtn">RANDOM SEED</button>
+                <button id="fullscreenBtn">FULLSCREEN</button>
+            </div>
+
+            <div class="control-group">
+                <h2>SPEED</h2>
+                <div class="speed-control">
+                    <label>Gen/sec:</label>
+                    <input type="number" id="speedInput" value="10" min="1" max="60">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h2>VIEW OPTIONS</h2>
+                <div class="checkbox-control">
+                    <label>
+                        <input type="checkbox" id="gridToggle" checked>
+                        Show Grid Borders
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h2>RULES</h2>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="classicRule" value="classic" checked>
+                        Classic Green
+                    </label>
+                </div>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="neighborColorRule" value="neighborColor">
+                        Neighbor Color Coding
+                    </label>
+                </div>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="ageBasedRule" value="ageBased">
+                        Cell Age & Size
+                    </label>
+                </div>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="densityRule" value="density">
+                        Population Density
+                    </label>
+                </div>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="heatmapRule" value="heatmap">
+                        Activity Heatmap
+                    </label>
+                </div>
+                <div class="rule-option">
+                    <label>
+                        <input type="radio" name="rule" id="ghostRule" value="ghost">
+                        Ghost Trail
+                    </label>
+                </div>
+                <div class="rule-description" id="ruleDescription">
+                    <h4>Classic Green</h4>
+                    <p>Traditional Conway's Game of Life appearance with all living cells displayed in bright green.
+                        Simple and classic visualization.</p>
+                </div>
+
+                <div class="color-customization" id="colorCustomization" style="display: block;">
+                    <h3>Color Customization</h3>
+                    <div id="colorControlsContainer">
+                        <!-- Dynamic color controls will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <h2>STATISTICS</h2>
+                <div class="stat-row">
+                    <span class="stat-label">Generation:</span>
+                    <span class="stat-value" id="generation">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Initial Cells:</span>
+                    <span class="stat-value" id="initialCells">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Current Population:</span>
+                    <span class="stat-value" id="liveCells">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Population Change:</span>
+                    <span class="stat-value" id="popChange">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Peak Population:</span>
+                    <span class="stat-value" id="peakPop">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Births This Gen:</span>
+                    <span class="stat-value" id="births">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Deaths This Gen:</span>
+                    <span class="stat-value" id="deaths">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Total Births:</span>
+                    <span class="stat-value" id="totalBirths">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Total Deaths:</span>
+                    <span class="stat-value" id="totalDeaths">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Stability:</span>
+                    <span class="stat-value" id="stability">-</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h2>PATTERNS</h2>
+                <div id="patternsContainer"></div>
+            </div>
+
+            <div class="info">
+                <p><strong>INSTRUCTIONS:</strong></p>
+                <p>• Click cells to toggle</p>
+                <p>• Drag to pan</p>
+                <p>• Scroll to zoom</p>
+                <p>• Space to start/stop</p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/js/game-of-life/main.js">
+    </script>
+</body>
+
+</html>

@@ -2,6 +2,10 @@
 import arhythmImg from '../assets/img/arhythm.png';
 import simplexNoiseImg from '../assets/img/simplex-noise.png';
 import sudokuSolverImg from '../assets/img/sudoku-solver.png';
+import gameOfLifeImg from '../assets/img/game-of-life.png';
+import mandelbrotSetImg from '../assets/img/mandelbrot-set.png';
+import advancedReactPocsImg from '../assets/img/advanced-reactjs-pocs.png';
+import kanbanBoardImg from '../assets/img/kanban-board.png';
 
 function main() {
   const projectsGrid = document.getElementById("projects-grid");
@@ -39,6 +43,50 @@ function main() {
       date: "2024",
       status: "Live",
       tags: ["JavaScript", "Algorithms", "Backtracking", "Data Structures", "UI/UX"]
+    },
+    {
+      name: "Conway's Game of Life Simulator",
+      url: "game-of-life",
+      openInNewTab: true,
+      image: gameOfLifeImg,
+      description: "Interactive simulation of Conway's Game of Life with customizable grid sizes and initial configurations. Features real-time rendering, adjustable simulation speed, and pattern library for exploring cellular automata behaviors.",
+      type: "Algorithm Demo",
+      date: "2023",
+      status: "Live",
+      tags: ["JavaScript", "Canvas API", "Cellular Automata", "Algorithms", "UI/UX"]
+    },
+    {
+      name: "Mandelbrot Set Explorer",
+      url: "mandelbrot-set",
+      openInNewTab: true,
+      image: mandelbrotSetImg,
+      description: "Dynamic visualization of the Mandelbrot set with interactive zoom and pan capabilities. Utilizes optimized rendering techniques and adaptive iteration algorithms to provide smooth exploration of fractal details.",
+      type: "Algorithm Demo",
+      date: "2023",
+      status: "Live",
+      tags: ["JavaScript", "Canvas API", "Fractals", "Algorithms", "UI/UX"]
+    },
+    {
+      name: "Kanban Board Application",
+      url: "https://kanban-board-by-harsh.netlify.app/",
+      openInNewTab: true,
+      image: kanbanBoardImg,
+      description: "A feature-rich Kanban board application for task management and team collaboration. Implements drag-and-drop functionality, real-time updates, and customizable workflows to enhance productivity and organization.",
+      type: "Web Application",
+      date: "2023",
+      status: "Live",
+      tags: ["React Js", "JavaScript", "Web Development", "UI/UX", "Drag and Drop"]
+    },
+    {
+      name: "Advanced React JS POCs",
+      url: "https://advanced-guide-react.netlify.app/",
+      openInNewTab: true,
+      image: advancedReactPocsImg,
+      description: "A collection of advanced React JS proof-of-concept projects demonstrating complex state management, performance optimization, and custom hook implementations. Showcases best practices in component architecture and responsive design.",
+      type: "Web Application",
+      date: "2023",
+      status: "Live",
+      tags: ["React Js", "JavaScript", "Web Development", "UI/UX", "Performance Optimization"]
     },
   ];
 
