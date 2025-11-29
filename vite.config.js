@@ -9,6 +9,7 @@ export default defineConfig({
         noise: "simplex-noise.html",
         life: "game-of-life.html",
         mandelbrot: "mandelbrot-set.html",
+        gameofsnake: "game-of-snake.html"
       }
     }
   }
