@@ -7,19 +7,23 @@ class Snake {
     this.unitSize = unitSize;
     this.direction = DIRECTIONS.RIGHT;
     this.tails = [];
+    this.collided = false;
   }
 
-  render(ctx, canvas) {
-    ctx.fillStyle = "green";
+  render(ctx, canvas, snakeConfig) {
+    ctx.fillStyle = snakeConfig.color;
     ctx.fillRect(this.x, this.y, this.unitSize, this.unitSize);
 
     let prevX = this.x;
     let prevY = this.y;
 
-    this.move(canvas);
+    this.move(canvas, snakeConfig);
 
     for (let i = 0; i < this.tails.length; i++) {
       const tail = this.tails[i];
+      if (tail.x === this.x && tail.y === this.y) {
+        this.collided = true;
+      }
       ctx.fillRect(tail.x, tail.y, this.unitSize, this.unitSize);
       let tempX = tail.x;
       let tempY = tail.y;
@@ -30,7 +34,7 @@ class Snake {
     }
   }
 
-  move(canvas) {
+  move(canvas, snakeConfig) {
     switch (this.direction) {
       case DIRECTIONS.UP:
         this.y -= this.unitSize;
@@ -51,11 +55,18 @@ class Snake {
     const maxX = Math.floor(canvas.width / this.unitSize) * this.unitSize;
     const maxY = Math.floor(canvas.height / this.unitSize) * this.unitSize;
 
-    if (this.x < 0) this.x = maxX - this.unitSize;
-    if (this.x >= maxX) this.x = 0;
-
-    if (this.y < 0) this.y = maxY - this.unitSize;
-    if (this.y >= maxY) this.y = 0;
+    if (snakeConfig.wrapAroundWalls) {
+      // Wrap around edges
+      if (this.x < 0) this.x = maxX - this.unitSize;
+      if (this.x >= maxX) this.x = 0;
+      if (this.y < 0) this.y = maxY - this.unitSize;
+      if (this.y >= maxY) this.y = 0;
+    } else {
+      // Collide with walls
+      if (this.x < 0 || this.x >= maxX || this.y < 0 || this.y >= maxY) {
+        this.collided = true;
+      }
+    }
   }
 
   addTail() {
@@ -64,14 +75,25 @@ class Snake {
 
   setDirection(newDirection) {
     if (this.direction === DIRECTIONS.UP && newDirection === DIRECTIONS.DOWN)
-      return;
+      return false;
     if (this.direction === DIRECTIONS.DOWN && newDirection === DIRECTIONS.UP)
-      return;
+      return false;
     if (this.direction === DIRECTIONS.LEFT && newDirection === DIRECTIONS.RIGHT)
-      return;
+      return false;
     if (this.direction === DIRECTIONS.RIGHT && newDirection === DIRECTIONS.LEFT)
-      return;
-    this.direction = newDirection;
+      return false;
+    
+    if (this.direction !== newDirection) {
+      this.direction = newDirection;
+      return true;
+    }
+    return false;
+  }
+
+  reset() {
+    this.direction = DIRECTIONS.RIGHT;
+    this.tails = [];
+    this.collided = false;
   }
 }
 

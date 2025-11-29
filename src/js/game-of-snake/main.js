@@ -1,55 +1,148 @@
 import { DIRECTIONS } from "./consts";
 import Food from "./Food";
 import Snake from "./Snake";
+import SnakeGUI from "./SnakeGUI";
+import { GameConfig } from "./GameConfig";
 
 let canvas,
   ctx,
   snake,
   food,
-  lastTime = 0;
-const FPS = 30,
-  FRAME_DURATION = 1000 / FPS,
-  UNIT_SIZE = 20;
+  gui,
+  gameConfig,
+  lastTime = 0,
+  animationId,
+  gameStartTime = 0,
+  currentMoves = 0;
 
 function renderGrid() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let x = 0; x < canvas.width; x += UNIT_SIZE) {
+  // Set background color
+  ctx.fillStyle = gameConfig.visual.backgroundColor;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  if (!gameConfig.showGrid) return;
+  
+  ctx.globalAlpha = gameConfig.visual.gridOpacity;
+  ctx.strokeStyle = gameConfig.visual.gridColor;
+  ctx.lineWidth = 1;
+  
+  for (let x = 0; x < canvas.width; x += gameConfig.unitSize) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, canvas.height);
-    ctx.strokeStyle = "#e0e0e0";
-    ctx.lineWidth = 1;
     ctx.stroke();
   }
-  for (let y = 0; y < canvas.height; y += UNIT_SIZE) {
+  for (let y = 0; y < canvas.height; y += gameConfig.unitSize) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(canvas.width, y);
-    ctx.strokeStyle = "#e0e0e0";
-    ctx.lineWidth = 1;
     ctx.stroke();
   }
+  ctx.globalAlpha = 1; // Reset alpha
 }
 
 function render() {
   renderGrid();
+  
+  // Update game time
+  const currentTime = Math.floor((Date.now() - gameStartTime) / 1000);
+  gui.updateGameTime(currentTime);
+  gui.updateMoves(currentMoves);
+  
   if (food.checkIfEaten(snake.x, snake.y)) {
     snake.addTail();
     food.putRandomly(canvas.width, canvas.height);
+    gameConfig.score += 10;
+    gameConfig.stats.foodEaten += 1;
+    
+    // Update GUI with new stats
+    gui.updateScore(gameConfig.score);
+    gui.updateSnakeLength(snake.tails.length + 1);
+    gui.updateFoodEaten(gameConfig.stats.foodEaten);
   }
-  food.render(ctx);
-  snake.render(ctx, canvas);
+  
+  if (snake.collided) {
+    handleGameOver();
+    return;
+  }
+  
+  food.render(ctx, gameConfig.food);
+  snake.render(ctx, canvas, gameConfig.snake);
+}
+
+function handleGameOver() {
+  gameConfig.gameOver = true;
+  gui.updateGameStatus(true);
+  
+  // Update high score if needed
+  gui.updateHighScore(gameConfig.score);
+  
+  // Update total statistics
+  gameConfig.stats.totalMoves += currentMoves;
+  gui.updateTotalMoves(gameConfig.stats.totalMoves);
+  
+  console.log('Game Over! Final Score:', gameConfig.score);
 }
 
 function animate(timestamp) {
   const delta = timestamp - lastTime;
+  const frameDuration = gameConfig.getFrameDuration() / gameConfig.snake.speed;
 
-  if (delta >= FRAME_DURATION) {
+  if (delta >= frameDuration && !gameConfig.paused && !gameConfig.gameOver) {
     lastTime = timestamp;
-    render(); // your snake update + grid
+    render();
   }
+  
+  if (!snake.collided && !gameConfig.gameOver) {
+    animationId = requestAnimationFrame(animate);
+  }
+}
 
-  requestAnimationFrame(animate);
+function initializeGame() {
+  const snakeXRandom =
+    Math.floor(Math.random() * (canvas.width / gameConfig.unitSize)) * gameConfig.unitSize;
+  const snakeYRandom =
+    Math.floor(Math.random() * (canvas.height / gameConfig.unitSize)) * gameConfig.unitSize;
+  snake = new Snake(snakeXRandom, snakeYRandom, gameConfig.unitSize);
+
+  const foodXRandom =
+    Math.floor(Math.random() * (canvas.width / gameConfig.unitSize)) * gameConfig.unitSize;
+  const foodYRandom =
+    Math.floor(Math.random() * (canvas.height / gameConfig.unitSize)) * gameConfig.unitSize;
+  food = new Food(foodXRandom, foodYRandom, gameConfig.unitSize);
+  
+  // Reset game state
+  gameConfig.score = 0;
+  gameConfig.gameOver = false;
+  gameConfig.stats.snakeLength = 1;
+  gameConfig.stats.foodEaten = 0;
+  currentMoves = 0;
+  gameStartTime = Date.now();
+  
+  // Update GUI
+  gui.updateScore(gameConfig.score);
+  gui.updateSnakeLength(1);
+  gui.updateFoodEaten(0);
+  gui.updateGameTime(0);
+  gui.updateMoves(0);
+  gui.updateGameStatus(false);
+}
+
+function resetGame() {
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+  }
+  
+  // Increment games played counter
+  gui.incrementGamesPlayed();
+  
+  snake.reset();
+  initializeGame();
+  animate();
+}
+
+function togglePause() {
+  gameConfig.paused = !gameConfig.paused;
 }
 
 function main() {
@@ -60,18 +153,52 @@ function main() {
   ctx = canvas.getContext("2d");
   app.appendChild(canvas);
 
-  const snakeXRandom =
-    Math.floor(Math.random() * (canvas.width / UNIT_SIZE)) * UNIT_SIZE;
-  const snakeYRandom =
-    Math.floor(Math.random() * (canvas.height / UNIT_SIZE)) * UNIT_SIZE;
-  snake = new Snake(snakeXRandom, snakeYRandom, UNIT_SIZE);
-
-  const foodXRandom =
-    Math.floor(Math.random() * (canvas.width / UNIT_SIZE)) * UNIT_SIZE;
-  const foodYRandom =
-    Math.floor(Math.random() * (canvas.height / UNIT_SIZE)) * UNIT_SIZE;
-  food = new Food(foodXRandom, foodYRandom, UNIT_SIZE);
-
+  // Initialize game configuration
+  gameConfig = new GameConfig();
+  
+  // Initialize GUI with callbacks
+  const guiCallbacks = {
+    onFPSChange: (value) => {
+      gameConfig.fps = value;
+    },
+    onUnitSizeChange: (value) => {
+      gameConfig.unitSize = value;
+      resetGame();
+    },
+    onShowGridChange: (value) => {
+      gameConfig.showGrid = value;
+    },
+    onSnakeColorChange: (value) => {
+      gameConfig.snake.color = value;
+    },
+    onSnakeSpeedChange: (value) => {
+      gameConfig.snake.speed = value;
+    },
+    onWrapAroundChange: (value) => {
+      gameConfig.snake.wrapAroundWalls = value;
+    },
+    onFoodColorChange: (value) => {
+      gameConfig.food.color = value;
+    },
+    onFoodShapeChange: (value) => {
+      gameConfig.food.shape = value;
+    },
+    onBackgroundColorChange: (value) => {
+      gameConfig.visual.backgroundColor = value;
+    },
+    onGridColorChange: (value) => {
+      gameConfig.visual.gridColor = value;
+    },
+    onGridOpacityChange: (value) => {
+      gameConfig.visual.gridOpacity = value;
+    },
+    onReset: resetGame,
+    onPause: togglePause
+  };
+  
+  gui = new SnakeGUI(gameConfig, guiCallbacks);
+  
+  initializeGame();
   animate();
 
   window.addEventListener("resize", () => {
@@ -83,11 +210,28 @@ function main() {
   //   key up down left right
   window.addEventListener("keydown", (e) => {
     const key = e.key;
-    if (key === "ArrowUp") snake.setDirection(DIRECTIONS.UP);
-    else if (key === "ArrowDown") snake.setDirection(DIRECTIONS.DOWN);
-    else if (key === "ArrowLeft") snake.setDirection(DIRECTIONS.LEFT);
-    else if (key === "ArrowRight") snake.setDirection(DIRECTIONS.RIGHT);
-    else if (key === "e") snake.addTail();
+    if (gameConfig.gameOver) return; // Don't accept input when game is over
+    
+    let directionChanged = false;
+    if (key === "ArrowUp") {
+      directionChanged = snake.setDirection(DIRECTIONS.UP);
+    } else if (key === "ArrowDown") {
+      directionChanged = snake.setDirection(DIRECTIONS.DOWN);
+    } else if (key === "ArrowLeft") {
+      directionChanged = snake.setDirection(DIRECTIONS.LEFT);
+    } else if (key === "ArrowRight") {
+      directionChanged = snake.setDirection(DIRECTIONS.RIGHT);
+    } else if (key === "e") {
+      snake.addTail();
+    } else if (key === " ") {
+      // Spacebar to pause/unpause
+      togglePause();
+    }
+    
+    // Track moves when direction changes
+    if (directionChanged) {
+      currentMoves++;
+    }
   });
 }
 
