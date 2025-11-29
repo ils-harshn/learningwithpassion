@@ -13,20 +13,24 @@ class Snake {
     ctx.fillStyle = "green";
     ctx.fillRect(this.x, this.y, this.unitSize, this.unitSize);
 
-    // render tails
-    for (let tail of this.tails) {
-      ctx.fillRect(tail.x, tail.y, this.unitSize, this.unitSize);
-    }
-
-    this.move();
-  }
-
-  move() {
-    // store head's previous position BEFORE movement
     let prevX = this.x;
     let prevY = this.y;
 
-    // move head
+    this.move();
+
+    for (let i = 0; i < this.tails.length; i++) {
+      const tail = this.tails[i];
+      ctx.fillRect(tail.x, tail.y, this.unitSize, this.unitSize);
+      let tempX = tail.x;
+      let tempY = tail.y;
+      tail.x = prevX;
+      tail.y = prevY;
+      prevX = tempX;
+      prevY = tempY;
+    }
+  }
+
+  move() {
     switch (this.direction) {
       case DIRECTIONS.UP:
         this.y -= this.unitSize;
@@ -40,18 +44,6 @@ class Snake {
       case DIRECTIONS.RIGHT:
         this.x += this.unitSize;
         break;
-    }
-
-    // update tails to follow the previous segment
-    for (let i = 0; i < this.tails.length; i++) {
-      let tempX = this.tails[i].x;
-      let tempY = this.tails[i].y;
-
-      this.tails[i].x = prevX;
-      this.tails[i].y = prevY;
-
-      prevX = tempX;
-      prevY = tempY;
     }
   }
 
