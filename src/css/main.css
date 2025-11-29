@@ -187,6 +187,13 @@ body {
   line-height: 1.1;
 }
 
+.hero-role {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
 .hero-subtitle {
   font-size: clamp(1.125rem, 2vw, 1.25rem);
   color: var(--text-secondary);
@@ -307,7 +314,7 @@ body {
 
 .contact-content {
   text-align: center;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -318,18 +325,44 @@ body {
   line-height: 1.6;
 }
 
-.contact-info {
+.contact-grid {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+  text-align: left;
+}
+
+.contact-card {
+  background: var(--bg-secondary);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-lg);
-  margin-top: var(--space-2xl);
 }
 
 .contact-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-lg);
-  background: var(--bg-secondary);
+  padding: var(--space-md);
+  background: var(--bg-primary);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
 }
@@ -337,14 +370,72 @@ body {
 .contact-label {
   font-weight: 500;
   color: var(--text-muted);
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  letter-spacing: 0.025em;
+  font-size: 0.9375rem;
 }
 
 .contact-value {
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.contact-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.contact-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.skill-category {
+  background: var(--bg-primary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.skill-category-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.skill-tag {
+  background: var(--primary-color);
+  color: white;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: transform 0.15s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
 }
 
 /* Projects Grid */
@@ -638,6 +729,21 @@ body {
   
   .project-content {
     padding: var(--space-md);
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .contact-card {
+    padding: var(--space-xl);
+  }
+  
+  .contact-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
   }
   
   .contact-item {
