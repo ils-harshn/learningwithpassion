@@ -7,10 +7,13 @@ import mandelbrotSetImg from '../assets/img/mandelbrot-set.png';
 import advancedReactPocsImg from '../assets/img/advanced-reactjs-pocs.png';
 import kanbanBoardImg from '../assets/img/kanban-board.png';
 
+let allProjects = []; // Store all projects for filtering
+let filteredProjects = []; // Store currently filtered projects
+
 function main() {
   const projectsGrid = document.getElementById("projects-grid");
   
-  const projects = [
+  allProjects = [
     {
       name: "Arhythm",
       url: "https://tombmusic.netlify.app/home",
@@ -90,10 +93,105 @@ function main() {
     },
   ];
 
-  projects.forEach((project) => {
+  filteredProjects = [...allProjects];
+  renderProjects();
+  initializeProjectFilters();
+}
+
+function renderProjects() {
+  const projectsGrid = document.getElementById("projects-grid");
+  const projectsCount = document.getElementById("projects-count");
+  const noResults = document.getElementById("no-results");
+  
+  // Clear existing projects
+  projectsGrid.innerHTML = '';
+  
+  if (filteredProjects.length === 0) {
+    noResults.style.display = 'block';
+    projectsCount.textContent = '';
+    return;
+  }
+  
+  noResults.style.display = 'none';
+  projectsCount.textContent = `Showing ${filteredProjects.length} of ${allProjects.length} projects`;
+  
+  filteredProjects.forEach((project) => {
     const projectCard = createProjectCard(project);
     projectsGrid.appendChild(projectCard);
   });
+}
+
+function initializeProjectFilters() {
+  const searchInput = document.getElementById('project-search');
+  const clearSearchBtn = document.getElementById('clear-search');
+  const typeFilter = document.getElementById('type-filter');
+  const techFilter = document.getElementById('tech-filter');
+  const yearFilter = document.getElementById('year-filter');
+  const resetFiltersBtn = document.getElementById('reset-filters');
+  
+  // Search functionality
+  searchInput.addEventListener('input', handleSearch);
+  clearSearchBtn.addEventListener('click', clearSearch);
+  
+  // Filter functionality
+  typeFilter.addEventListener('change', applyFilters);
+  techFilter.addEventListener('change', applyFilters);
+  yearFilter.addEventListener('change', applyFilters);
+  
+  // Reset filters
+  resetFiltersBtn.addEventListener('click', resetFilters);
+  
+  // Initialize results count
+  document.getElementById("projects-count").textContent = `Showing ${allProjects.length} of ${allProjects.length} projects`;
+}
+
+function handleSearch() {
+  applyFilters();
+}
+
+function clearSearch() {
+  const searchInput = document.getElementById('project-search');
+  searchInput.value = '';
+  applyFilters();
+}
+
+function applyFilters() {
+  const searchTerm = document.getElementById('project-search').value.toLowerCase();
+  const typeFilter = document.getElementById('type-filter').value;
+  const techFilter = document.getElementById('tech-filter').value;
+  const yearFilter = document.getElementById('year-filter').value;
+  
+  filteredProjects = allProjects.filter(project => {
+    // Search filter
+    const matchesSearch = !searchTerm || 
+      project.name.toLowerCase().includes(searchTerm) ||
+      project.description.toLowerCase().includes(searchTerm) ||
+      project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+    
+    // Type filter
+    const matchesType = !typeFilter || project.type === typeFilter;
+    
+    // Technology filter
+    const matchesTech = !techFilter || 
+      project.tags.some(tag => tag.toLowerCase().includes(techFilter.toLowerCase()));
+    
+    // Year filter
+    const matchesYear = !yearFilter || project.date === yearFilter;
+    
+    return matchesSearch && matchesType && matchesTech && matchesYear;
+  });
+  
+  renderProjects();
+}
+
+function resetFilters() {
+  document.getElementById('project-search').value = '';
+  document.getElementById('type-filter').value = '';
+  document.getElementById('tech-filter').value = '';
+  document.getElementById('year-filter').value = '';
+  
+  filteredProjects = [...allProjects];
+  renderProjects();
 }
 
 function createProjectCard(project) {

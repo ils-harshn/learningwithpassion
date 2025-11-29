@@ -270,6 +270,84 @@
             algorithm implementation, and user experience design.
           </p>
         </div>
+        
+        <div class="projects-controls">
+          <div class="search-container">
+            <div class="search-input-wrapper">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21L16.65 16.65"/>
+              </svg>
+              <input 
+                type="text" 
+                id="project-search" 
+                placeholder="Search projects..." 
+                class="search-input"
+                aria-label="Search projects"
+              />
+              <button id="clear-search" class="clear-search" aria-label="Clear search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div class="filters-separator"></div>
+          
+          <div class="filters-container">
+            <div class="filter-group">
+              <label class="filter-label">Type:</label>
+              <select id="type-filter" class="filter-select" aria-label="Filter by project type">
+                <option value="">Type</option>
+                <option value="Web Application">Web App</option>
+                <option value="Algorithm Demo">Algorithm</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Technology:</label>
+              <select id="tech-filter" class="filter-select" aria-label="Filter by technology">
+                <option value="">Tech</option>
+                <option value="React">React</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Python">Python</option>
+                <option value="Canvas API">Canvas</option>
+                <option value="WebGL">WebGL</option>
+                <option value="Algorithms">Algorithms</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Year:</label>
+              <select id="year-filter" class="filter-select" aria-label="Filter by year">
+                <option value="">Year</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+              </select>
+            </div>
+            
+            <button id="reset-filters" class="reset-filters-btn" title="Reset all filters">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="projects-results">
+          <div id="projects-count" class="results-count"></div>
+          <div id="no-results" class="no-results" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No projects found</h3>
+            <p>Try adjusting your search terms or filters</p>
+          </div>
+        </div>
+        
         <div id="projects-grid" class="projects-showcase"></div>
       </div>
     </section>
