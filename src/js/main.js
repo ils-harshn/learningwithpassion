@@ -6,6 +6,7 @@ import gameOfLifeImg from '../assets/img/game-of-life.png';
 import mandelbrotSetImg from '../assets/img/mandelbrot-set.png';
 import advancedReactPocsImg from '../assets/img/advanced-reactjs-pocs.png';
 import kanbanBoardImg from '../assets/img/kanban-board.png';
+import gameOfSnakeImg from '../assets/img/game-of-snake.png';
 
 let allProjects = []; // Store all projects for filtering
 let filteredProjects = []; // Store currently filtered projects
@@ -90,6 +91,17 @@ function main() {
       date: "2023",
       status: "Live",
       tags: ["React Js", "JavaScript", "Web Development", "UI/UX", "Performance Optimization"]
+    },
+    {
+      name: "Game Of Snake",
+      url: "game-of-snake",
+      openInNewTab: true,
+      image: gameOfSnakeImg,
+      description: "Classic Snake game implemented with modern web technologies. Features smooth controls, customizable settings, and responsive design for an engaging gaming experience across devices.",
+      type: "Web Application",
+      date: "2023",
+      status: "Live",
+      tags: ["JavaScript", "Canvas API", "Game Development", "UI/UX", "Algorithms"]
     },
   ];
 
