@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -7,76 +7,250 @@
     <title>Harsh Narwariya - Software Engineer Portfolio</title>
     <meta name="description" content="Harsh Narwariya - Full Stack Software Engineer with 3 years of experience in React, Next.js, Python, Node.js, and modern web technologies. Based in Indore, India." />
     <link rel="stylesheet" href="/src/css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+      <div class="floating-elements"></div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
       <div class="container">
         <div class="nav-brand">
-          <span class="nav-logo">HN</span>
-          <span class="nav-title">Harsh Narwariya</span>
+          <div class="brand-container">
+            <div class="nav-logo">
+              <span class="logo-text">HN</span>
+              <div class="logo-glow"></div>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">Harsh Narwariya</span>
+              <span class="brand-subtitle">Software Engineer</span>
+            </div>
+          </div>
         </div>
-        <div class="nav-links">
-          <a href="#about" class="nav-link">About</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#contact" class="nav-link">Contact</a>
+        <div class="nav-menu">
+          <a href="#about" class="nav-link">
+            <span class="nav-text">About</span>
+            <div class="nav-indicator"></div>
+          </a>
+          <a href="#projects" class="nav-link">
+            <span class="nav-text">Projects</span>
+            <div class="nav-indicator"></div>
+          </a>
+          <a href="#contact" class="nav-link">
+            <span class="nav-text">Contact</span>
+            <div class="nav-indicator"></div>
+          </a>
         </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-section">
+    <main class="hero-section">
+      <div class="hero-background">
+        <div class="grid-overlay"></div>
+        <div class="gradient-orbs">
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+          <div class="orb orb-3"></div>
+        </div>
+      </div>
+      
       <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1 class="hero-title">Harsh Narwariya</h1>
-            <p class="hero-role">Software Engineer at Synapses XTL</p>
-            <p class="hero-subtitle">Full Stack Developer with 3 years of experience building scalable web applications using React, Next.js, Python, Node.js, and modern technologies. Based in Indore, India.</p>
+        <div class="hero-wrapper">
+          <div class="hero-content">
+            <div class="hero-intro">
+              <div class="status-badge">
+                <div class="status-indicator"></div>
+                <span class="status-text">Available for new opportunities</span>
+              </div>
+              
+              <h1 class="hero-title">
+                <span class="title-primary">Harsh Narwariya</span>
+                <span class="title-secondary gradient-text">Full Stack Software Engineer</span>
+              </h1>
+              
+              <p class="hero-description">
+                Crafting exceptional digital experiences with <span class="highlight">3+ years of expertise</span> 
+                in modern web technologies. Specialized in React, Next.js, Python, and scalable architectures 
+                that drive business growth.
+              </p>
+              
+              <div class="hero-stats">
+                <div class="stat-group">
+                  <div class="stat-number">3+</div>
+                  <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-group">
+                  <div class="stat-number">15+</div>
+                  <div class="stat-label">Technologies</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-group">
+                  <div class="stat-number">7+</div>
+                  <div class="stat-label">Projects Delivered</div>
+                </div>
+              </div>
+            </div>
+            
             <div class="hero-actions">
-              <a href="./download-resume" class="btn btn-primary" download>Download Resume</a>
-              <a href="#projects" class="btn btn-outline">View Projects</a>
+              <a href="./download-resume" class="btn btn-primary" download>
+                <span class="btn-icon">📄</span>
+                <span class="btn-text">Download Resume</span>
+              </a>
+              <a href="#projects" class="btn btn-secondary">
+                <span class="btn-text">View Projects</span>
+                <span class="btn-arrow">→</span>
+              </a>
             </div>
           </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-number">3+</span>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">10+</span>
-              <span class="stat-label">Technologies</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">2+</span>
-              <span class="stat-label">Active Projects</span>
+          
+          <div class="hero-aside">
+            <div class="profile-card">
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <span class="avatar-text">HN</span>
+                  <div class="avatar-glow"></div>
+                </div>
+                <div class="profile-info">
+                  <h3 class="profile-name">Harsh Narwariya</h3>
+                  <p class="profile-title">Software Engineer</p>
+                  <p class="profile-company">@ Synapses XTL</p>
+                </div>
+              </div>
+              
+              <div class="profile-details">
+                <div class="detail-item">
+                  <span class="detail-icon">📍</span>
+                  <span class="detail-text">Indore, India</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">💼</span>
+                  <span class="detail-text">Full Stack Development</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">🎯</span>
+                  <span class="detail-text">Enterprise Solutions</span>
+                </div>
+              </div>
+              
+              <div class="profile-skills">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Next.js</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </header>
+    </main>
 
     <!-- About Section -->
     <section id="about" class="about-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">About Me</h2>
-          <p class="section-description">Full Stack Software Engineer passionate about creating efficient, scalable solutions and exploring the fascinating world of technology and space.</p>
+          <div class="section-badge">
+            <span class="badge-line"></span>
+            <span class="badge-text">About Me</span>
+          </div>
+          <h2 class="section-title">Building Tomorrow's Web Today</h2>
+          <p class="section-description">
+            Transforming complex challenges into elegant digital solutions with precision, 
+            innovation, and a deep commitment to excellence.
+          </p>
         </div>
-        <div class="about-grid">
-          <div class="about-card">
-            <div class="about-icon">💼</div>
-            <h3 class="about-card-title">Professional Experience</h3>
-            <p class="about-card-text">3+ years as Software Engineer at Synapses XTL, building enterprise-grade applications with modern technologies.</p>
+        
+        <div class="about-layout">
+          <div class="about-content">
+            <div class="about-story">
+              <h3 class="story-title">My Journey</h3>
+              <p class="story-text">
+                As a passionate Full Stack Software Engineer with 3+ years at Synapses XTL, 
+                I specialize in architecting scalable applications that drive real business value. 
+                My expertise spans modern web technologies, from React and Next.js on the frontend 
+                to Python and Node.js on the backend.
+              </p>
+              <p class="story-text">
+                Beyond the technical realm, I find inspiration in swimming through challenges, 
+                exploring musical harmonies, and contemplating the infinite mysteries of space 
+                and the cosmos – perspectives that enrich my approach to problem-solving.
+              </p>
+            </div>
+            
+            <div class="experience-highlights">
+              <div class="highlight-item">
+                <div class="highlight-icon">⚡</div>
+                <div class="highlight-content">
+                  <h4 class="highlight-title">Performance First</h4>
+                  <p class="highlight-text">Optimizing applications for speed, scalability, and exceptional user experience.</p>
+                </div>
+              </div>
+              
+              <div class="highlight-item">
+                <div class="highlight-icon">🔧</div>
+                <div class="highlight-content">
+                  <h4 class="highlight-title">Modern Architecture</h4>
+                  <p class="highlight-text">Building robust, maintainable systems with cutting-edge technologies and best practices.</p>
+                </div>
+              </div>
+              
+              <div class="highlight-item">
+                <div class="highlight-icon">🎯</div>
+                <div class="highlight-content">
+                  <h4 class="highlight-title">Business Impact</h4>
+                  <p class="highlight-text">Delivering solutions that solve real problems and create measurable business value.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="about-card">
-            <div class="about-icon">🎓</div>
-            <h3 class="about-card-title">Education</h3>
-            <p class="about-card-text">B.Tech in Computer Science with strong foundation in algorithms, data structures, and software engineering principles.</p>
-          </div>
-          <div class="about-card">
-            <div class="about-icon">🚀</div>
-            <h3 class="about-card-title">Interests</h3>
-            <p class="about-card-text">Swimming, singing, and fascinated by space exploration and the logical mysteries of the universe.</p>
+          
+          <div class="about-aside">
+            <div class="expertise-summary">
+              <h3 class="summary-title">Core Expertise</h3>
+              
+              <div class="expertise-area">
+                <h4 class="area-title">Frontend Development</h4>
+                <div class="tech-list">
+                  <span class="tech-item">React</span>
+                  <span class="tech-item">Next.js</span>
+                  <span class="tech-item">TypeScript</span>
+                  <span class="tech-item">Three.js</span>
+                </div>
+              </div>
+              
+              <div class="expertise-area">
+                <h4 class="area-title">Backend Development</h4>
+                <div class="tech-list">
+                  <span class="tech-item">Python</span>
+                  <span class="tech-item">Node.js</span>
+                  <span class="tech-item">Django</span>
+                  <span class="tech-item">FastAPI</span>
+                </div>
+              </div>
+              
+              <div class="expertise-area">
+                <h4 class="area-title">Database & Tools</h4>
+                <div class="tech-list">
+                  <span class="tech-item">MongoDB</span>
+                  <span class="tech-item">PostgreSQL</span>
+                  <span class="tech-item">Redis</span>
+                  <span class="tech-item">Docker</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="education-card">
+              <div class="edu-icon">🎓</div>
+              <div class="edu-content">
+                <h4 class="edu-title">Education</h4>
+                <p class="edu-degree">B.Tech Computer Science</p>
+                <p class="edu-details">Strong foundation in algorithms, data structures, and software engineering principles</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -86,86 +260,142 @@
     <section id="projects" class="projects-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-description">Professional-grade applications showcasing technical depth and innovative approaches.</p>
+          <div class="section-badge">
+            <span class="badge-line"></span>
+            <span class="badge-text">Portfolio</span>
+          </div>
+          <h2 class="section-title">Featured Work</h2>
+          <p class="section-description">
+            A curated selection of projects demonstrating expertise in full-stack development, 
+            algorithm implementation, and user experience design.
+          </p>
         </div>
-        <div id="projects-grid" class="projects-grid"></div>
+        <div id="projects-grid" class="projects-showcase"></div>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
+      <div class="contact-background">
+        <div class="contact-grid-bg"></div>
+      </div>
+      
       <div class="container">
-        <div class="contact-content">
-          <h2 class="section-title">Let's Connect</h2>
-          <p class="contact-text">Ready to collaborate on exciting projects or discuss technology, opportunities, and innovations.</p>
-          
-          <div class="contact-grid">
-            <div class="contact-card">
-              <h3 class="contact-card-title">Contact Information</h3>
-              <div class="contact-items">
-                <div class="contact-item">
-                  <span class="contact-label">📧 Email</span>
-                  <span class="contact-value">
-                    <a href="mailto:harsh.narwariya11@gmail.com" class="contact-link">harsh.narwariya11@gmail.com</a>
-                  </span>
-                </div>
-                <div class="contact-item">
-                  <span class="contact-label">💼 LinkedIn</span>
-                  <span class="contact-value">
-                    <a href="https://in.linkedin.com/in/harsh-narwariya-208876202" target="_blank" rel="noopener noreferrer" class="contact-link">Harsh Narwariya</a>
-                  </span>
-                </div>
-                <div class="contact-item">
-                  <span class="contact-label">🐙 GitHub</span>
-                  <span class="contact-value">
-                    <a href="https://github.com/HarshNarwariya" target="_blank" rel="noopener noreferrer" class="contact-link">HarshNarwariya</a>
-                  </span>
-                </div>
-                <div class="contact-item">
-                  <span class="contact-label">📍 Location</span>
-                  <span class="contact-value">Indore, India</span>
-                </div>
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge-line"></span>
+            <span class="badge-text">Connect</span>
+          </div>
+          <h2 class="section-title">Let's Build Something Amazing</h2>
+          <p class="section-description">
+            Ready to collaborate on innovative projects or discuss opportunities in technology and development.
+          </p>
+        </div>
+        
+        <div class="contact-layout">
+          <div class="contact-main">
+            <div class="contact-intro">
+              <div class="availability-status">
+                <div class="status-dot"></div>
+                <span class="status-label">Available for new projects</span>
               </div>
+              
+              <h3 class="contact-title">Let's Create Something Exceptional</h3>
+              <p class="contact-description">
+                Ready to transform your vision into reality? Whether it's building a new application, 
+                optimizing existing systems, or exploring innovative solutions, I'm here to help you succeed.
+              </p>
             </div>
             
-            <div class="contact-card">
-              <h3 class="contact-card-title">Professional Skills</h3>
-              <div class="skills-grid">
-                <div class="skill-category">
-                  <h4 class="skill-category-title">Frontend</h4>
-                  <div class="skill-tags">
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Next.js</span>
-                    <span class="skill-tag">Three.js</span>
-                    <span class="skill-tag">JavaScript</span>
-                  </div>
+            <div class="contact-methods">
+              <a href="mailto:harsh.narwariya11@gmail.com" class="contact-card email">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                  </svg>
                 </div>
-                <div class="skill-category">
-                  <h4 class="skill-category-title">Backend</h4>
-                  <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Sockets</span>
-                    <span class="skill-tag">API Development</span>
-                  </div>
+                <div class="contact-info">
+                  <h4 class="contact-method">Email</h4>
+                  <p class="contact-detail">harsh.narwariya11@gmail.com</p>
+                  <span class="contact-action">Send me a message →</span>
                 </div>
-                <div class="skill-category">
-                  <h4 class="skill-category-title">Database</h4>
-                  <div class="skill-tags">
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">Mongoose</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Firebase</span>
-                  </div>
+              </a>
+              
+              <a href="https://in.linkedin.com/in/harsh-narwariya-208876202" target="_blank" rel="noopener noreferrer" class="contact-card linkedin">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19S5.19 5.95 5.19 6.88A1.69 1.69 0 0 0 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/>
+                  </svg>
                 </div>
+                <div class="contact-info">
+                  <h4 class="contact-method">LinkedIn</h4>
+                  <p class="contact-detail">Professional Network</p>
+                  <span class="contact-action">Connect with me →</span>
+                </div>
+              </a>
+              
+              <a href="https://github.com/HarshNarwariya" target="_blank" rel="noopener noreferrer" class="contact-card github">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                  </svg>
+                </div>
+                <div class="contact-info">
+                  <h4 class="contact-method">GitHub</h4>
+                  <p class="contact-detail">View my code</p>
+                  <span class="contact-action">Explore projects →</span>
+                </div>
+              </a>
+            </div>
+            
+            <div class="contact-footer">
+              <div class="location-info">
+                <span class="location-icon">📍</span>
+                <span class="location-text">Based in Indore, India</span>
+                <span class="timezone-text">GMT+5:30</span>
+              </div>
+              
+              <div class="response-time">
+                <span class="response-icon">⚡</span>
+                <span class="response-text">Typically responds within 24 hours</span>
               </div>
             </div>
           </div>
           
-          <div class="contact-actions">
-            <a href="./download-resume" class="btn btn-primary" download>📄 Download Resume</a>
-            <a href="mailto:harsh.narwariya11@gmail.com" class="btn btn-outline">✉️ Send Email</a>
+          <div class="contact-sidebar">
+            <div class="quick-actions">
+              <h4 class="sidebar-title">Quick Actions</h4>
+              <a href="./download-resume" class="quick-action primary" download>
+                <span class="action-icon">📄</span>
+                <span class="action-text">Download Resume</span>
+              </a>
+              <a href="#projects" class="quick-action secondary">
+                <span class="action-icon">💼</span>
+                <span class="action-text">View Portfolio</span>
+              </a>
+            </div>
+            
+            <div class="collaboration-types">
+              <h4 class="sidebar-title">Open to</h4>
+              <div class="collab-list">
+                <div class="collab-item">
+                  <span class="collab-icon">🚀</span>
+                  <span class="collab-text">Full-time Opportunities</span>
+                </div>
+                <div class="collab-item">
+                  <span class="collab-icon">📋</span>
+                  <span class="collab-text">Freelance Projects</span>
+                </div>
+                <div class="collab-item">
+                  <span class="collab-icon">💡</span>
+                  <span class="collab-text">Technical Consulting</span>
+                </div>
+                <div class="collab-item">
+                  <span class="collab-icon">🤝</span>
+                  <span class="collab-text">Open Source Collaboration</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -173,20 +403,35 @@
 
     <!-- Footer -->
     <footer class="footer">
+      <div class="footer-background">
+        <div class="footer-grid"></div>
+      </div>
+      
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">
-            <span class="footer-logo">HN</span>
-            <p class="footer-tagline">Harsh Narwariya - Full Stack Software Engineer</p>
+            <div class="brand-logo">
+              <span class="logo-text">HN</span>
+            </div>
+            <div class="brand-info">
+              <h3 class="brand-name">Harsh Narwariya</h3>
+              <p class="brand-tagline">Full Stack Software Engineer</p>
+            </div>
           </div>
+          
           <div class="footer-links">
             <a href="#about" class="footer-link">About</a>
             <a href="#projects" class="footer-link">Projects</a>
             <a href="#contact" class="footer-link">Contact</a>
+            <span class="link-divider">|</span>
+            <a href="https://github.com/HarshNarwariya" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+            <a href="https://in.linkedin.com/in/harsh-narwariya-208876202" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
           </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Harsh Narwariya. All rights reserved.</p>
+          
+          <div class="footer-meta">
+            <p class="copyright">© 2025 Harsh Narwariya. Built with precision and passion.</p>
+            <p class="location">Indore, India • Available Worldwide</p>
+          </div>
         </div>
       </div>
     </footer>
