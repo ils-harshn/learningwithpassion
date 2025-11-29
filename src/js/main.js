@@ -1,3 +1,8 @@
+// Import project images
+import arhythmImg from '../assets/img/arhythm.png';
+import simplexNoiseImg from '../assets/img/simplex-noise.png';
+import sudokuSolverImg from '../assets/img/sudoku-solver.png';
+
 function main() {
   const projectsGrid = document.getElementById("projects-grid");
   
@@ -6,7 +11,7 @@ function main() {
       name: "Arhythm",
       url: "https://tombmusic.netlify.app/home",
       openInNewTab: true,
-      image: "/src/assets/img/arhythm.png",
+      image: arhythmImg,
       description: "Cutting-edge music visualization tool that synchronizes dynamic graphics with audio input. Utilizes Fast Fourier Transform (FFT) for real-time frequency analysis and offers customizable visual effects for an immersive experience.",
       type: "Web Application",
       date: "2022",
@@ -17,7 +22,7 @@ function main() {
       name: "Simplex Noise Terrain Generator",
       url: "simplex-noise",
       openInNewTab: true,
-      image: "/src/assets/img/simplex-noise.png",
+      image: simplexNoiseImg,
       description: "Advanced procedural terrain generation system utilizing Simplex noise algorithms. Features real-time parameter adjustment, multiple biome rendering, and optimized WebGL performance for smooth interaction.",
       type: "Web Application",
       date: "2024",
@@ -28,7 +33,7 @@ function main() {
       name: "Intelligent Sudoku Solver",
       url: "sudoku-solver",
       openInNewTab: true,
-      image: "/src/assets/img/sudoku-solver.png",
+      image: sudokuSolverImg,
       description: "Sophisticated puzzle-solving application implementing backtracking algorithms with constraint propagation. Includes interactive grid interface and step-by-step solution visualization for educational purposes.",
       type: "Algorithm Demo",
       date: "2024",
